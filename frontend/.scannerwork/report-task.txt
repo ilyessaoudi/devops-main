@@ -1,0 +1,6 @@
+projectKey=achat-frontend-jraidianas-4twin9:latest
+serverUrl=http://localhost:9000
+serverVersion=25.4.0.105899
+dashboardUrl=http://localhost:9000/dashboard?id=achat-frontend-jraidianas-4twin9%3Alatest
+ceTaskId=a66a6bb2-c88f-4242-ac66-ec0b4adc8d87
+ceTaskUrl=http://localhost:9000/api/ce/task?id=a66a6bb2-c88f-4242-ac66-ec0b4adc8d87
