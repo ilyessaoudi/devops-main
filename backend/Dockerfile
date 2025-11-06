@@ -6,7 +6,7 @@ COPY backend/src ./src
 RUN mvn clean package -DskipTests
 
 # === Stage 2: Create the runtime image ===
-FROM openjdk:17-slim  
+FROM openjdk:17
 LABEL maintainer="saoudi ilyes Classe"
 WORKDIR /app
 
