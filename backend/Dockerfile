@@ -1,6 +1,18 @@
-FROM openjdk:17-jdk-slim
+# === Stage 1: Build the application ===
+FROM maven:3.8.6-openjdk-17-slim AS build
+WORKDIR /app
+COPY backend/pom.xml ./     
+COPY backend/src ./src       
+RUN mvn clean package -DskipTests
+
+# === Stage 2: Create the runtime image ===
+FROM eclipse-temurin:17-jre-slim
 LABEL maintainer="saoudi ilyes Classe"
 WORKDIR /app
-COPY target/achat-1.0.jar achat-backend.jar
+# Copy the jar from the build stage
+COPY --from=build /app/target/achat-1.0.jar ./app.jar
+# Use a non-root user for security
+RUN addgroup --system spring && adduser --system --ingroup spring springuser
+USER springuser
 EXPOSE 8089
-ENTRYPOINT ["java", "-jar", "achat-backend.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
