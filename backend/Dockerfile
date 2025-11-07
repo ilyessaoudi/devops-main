@@ -1,8 +1,8 @@
 # === Stage 1: Build the application ===
-FROM eclipse-temurin:17 AS build
+FROM maven:3.6.3-openjdk-17 AS build
 WORKDIR /app
 
-# Copy the pom and source (from the current directory, since Dockerfile is in 'backend')
+# Copy the pom and source
 COPY pom.xml ./
 COPY src ./src
 
