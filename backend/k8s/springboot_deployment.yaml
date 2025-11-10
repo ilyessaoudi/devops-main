@@ -1,0 +1,26 @@
+
+# springboot-deployment.yaml: Deploy Spring Boot application
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot
+  template:
+    metadata:
+      labels:
+        app: springboot
+    spec:
+      containers:
+        - name: springboot
+          image: simpledotnet/devsecops-jenkins:latest  # Docker image from Jenkins pipeline
+          envFrom:
+            - configMapRef:
+                name: springboot-config
+            - secretRef:
+                name: springboot-secret
+          ports:
+            - containerPort: 8089  # Match the port defined in Dockerfile
