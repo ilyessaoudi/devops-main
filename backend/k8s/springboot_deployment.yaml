@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
         - name: springboot
-          image: simpledotnet/devsecops-jenkins:latest  # Docker image from Jenkins pipeline
+          image: simpledotnet/devsecops-jenkins:latest  
+          imagePullPolicy: IfNotPresent
           envFrom:
             - configMapRef:
                 name: springboot-config
